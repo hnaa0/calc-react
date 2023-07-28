@@ -35,8 +35,12 @@ function App() {
   };
 
   const getResult = () => {
-    let updateResult = calcState.calcForm.replaceAll("×", "*");
-    setCalcState({ ...calcState, calcResult: eval(updateResult).toFixed(12) });
+    let updateResult = eval(calcState.calcForm.replaceAll("×", "*"));
+    if (Number.isInteger(updateResult)) {
+      setCalcState({ ...calcState, calcResult: updateResult });
+    } else {
+      setCalcState({ ...calcState, calcResult: updateResult.toFixed(12) });
+    }
   };
 
   const appendNum = (value) => {
