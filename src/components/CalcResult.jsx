@@ -1,10 +1,10 @@
 import { styled } from "styled-components";
 
-export default function CalcResult() {
+export default function CalcResult(props) {
   return (
     <ResultView>
-      <CalcInput>1+2+3+4</CalcInput>
-      <CalcOutput>10</CalcOutput>
+      <CalcInput>{props.form}</CalcInput>
+      <CalcOutput>{props.result}</CalcOutput>
     </ResultView>
   );
 }

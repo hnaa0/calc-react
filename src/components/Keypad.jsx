@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 
-export default function Keypad() {
+export default function Keypad({ onClick }) {
   const keys = [
     "C",
     "AC",
@@ -25,18 +25,19 @@ export default function Keypad() {
 
   return (
     <>
-      {keys.map((num) =>
-        num == "0" ? (
+      {keys.map((key) =>
+        key === "0" ? (
           <KeyBox
-            key={num}
-            value={num}
+            key={key}
+            value={key}
             style={{ gridColumnStart: 1, gridColumnEnd: 3 }}
+            onClick={() => onClick(key)}
           >
-            {num}
+            {key}
           </KeyBox>
         ) : (
-          <KeyBox key={num} value={num}>
-            {num}
+          <KeyBox key={key} value={key} onClick={() => onClick(key)}>
+            {key}
           </KeyBox>
         )
       )}
