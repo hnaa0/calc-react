@@ -35,7 +35,9 @@ function App() {
   };
 
   const getResult = () => {
-    let updateResult = eval(calcState.calcForm.replaceAll("×", "*"));
+    let updateResult = eval(
+      calcState.calcForm.replaceAll("×", "*").replaceAll("%", "*0.01")
+    );
     if (Number.isInteger(updateResult)) {
       setCalcState({ ...calcState, calcResult: updateResult });
     } else {
@@ -72,6 +74,17 @@ function App() {
     setCalcState({ calcForm: updateform });
   };
 
+  const appendPercent = (value) => {
+    if (
+      (calcState.calcForm === "") |
+      isNaN(calcState.calcForm.charAt(calcState.calcForm.length - 1))
+    ) {
+      return;
+    }
+    let updateform = calcState.calcForm + value;
+    setCalcState({ calcForm: updateform });
+  };
+
   const onClick = (value) => {
     if (value === "AC") {
       allClear(value);
@@ -88,8 +101,15 @@ function App() {
       appendOperator(value);
     } else if ((value === ".") & !calcState.calcForm.includes(".")) {
       appendPoint(value);
+    } else if (value === "%") {
+      appendPercent(value);
     } else if (value === "=") {
-      getResult();
+      if (
+        isNumber(calcState.calcForm.charAt(calcState.calcForm.length - 1)) |
+        (calcState.calcForm.charAt(calcState.calcForm.length - 1) === "%")
+      ) {
+        getResult();
+      }
     }
   };
 
