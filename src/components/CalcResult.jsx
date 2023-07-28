@@ -16,7 +16,7 @@ const ResultView = styled.div`
   align-items: flex-end;
   width: 350px;
   height: 100px;
-  padding: 12px 4px;
+  padding: 12px;
   background-color: #ecf2ff;
 `;
 
