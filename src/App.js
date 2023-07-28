@@ -36,7 +36,7 @@ function App() {
 
   const getResult = () => {
     let updateResult = calcState.calcForm.replaceAll("×", "*");
-    setCalcState({ ...calcState, calcResult: eval(updateResult) });
+    setCalcState({ ...calcState, calcResult: eval(updateResult).toFixed(12) });
   };
 
   const appendNum = (value) => {
