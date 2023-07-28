@@ -26,6 +26,14 @@ function App() {
     setCalcState({ calcForm: "", calcResult: "" });
   };
 
+  const Clear = () => {
+    let updateform = calcState.calcForm.substring(
+      0,
+      calcState.calcForm.length - 1
+    );
+    setCalcState({ calcForm: updateform });
+  };
+
   const getResult = () => {
     let updateResult = calcState.calcForm.replaceAll("×", "*");
     setCalcState({ ...calcState, calcResult: eval(updateResult) });
@@ -64,11 +72,7 @@ function App() {
     if (value === "AC") {
       allClear(value);
     } else if (value === "C") {
-      let updateform = calcState.calcForm.substring(
-        0,
-        calcState.calcForm.length - 1
-      );
-      setCalcState({ calcForm: updateform });
+      Clear();
     } else if (isNumber(value)) {
       appendNum(value);
     } else if (
